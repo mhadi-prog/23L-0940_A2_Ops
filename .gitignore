@@ -2,10 +2,10 @@
 .env
 __pycache__/
 *.pyc
-data/
 *.keras
 *.h5
 mlruns/
 .ipynb_checkpoints/
 .DS_Store
 reports/figures/
+data/*.zip
