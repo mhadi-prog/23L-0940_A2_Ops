@@ -1,0 +1,4 @@
+[core]
+    remote = origin
+['remote "origin"']
+    url = https://dagshub.com/mhadi-prog/23L-0940_A2_Ops.dvc
