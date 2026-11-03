@@ -28,6 +28,8 @@ p.add_argument("--patience", type=int, default=6)
 p.add_argument("--dropout", type=float, default=None)
 p.add_argument("--no-class-weight", action="store_true")
 p.add_argument("--mlflow", action="store_true")
+p.add_argument("--eval-test", action="store_true")
+p.add_argument("--beta", type=float, default=1.0)   # >1 favours recall of AI images
 args = p.parse_args()
 
 os.environ["PYTHONHASHSEED"] = str(SEED)
@@ -141,5 +143,8 @@ else:
     print("Stage 2 trainable layers:", t2)
     run_stage(model, "stage2_finetune", args.ft_epochs)
 
+from evaluation import evaluate_and_log
+evaluate_and_log(model, args.run_name, use_mlflow=args.mlflow,
+                 eval_test=args.eval_test, beta=args.beta)
 if args.mlflow:
     mlflow.end_run()
