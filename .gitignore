@@ -9,3 +9,4 @@ mlruns/
 .DS_Store
 reports/figures/
 data/*.zip
+reports/smoke_*
