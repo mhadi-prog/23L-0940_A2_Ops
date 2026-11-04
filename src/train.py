@@ -30,6 +30,7 @@ p.add_argument("--no-class-weight", action="store_true")
 p.add_argument("--mlflow", action="store_true")
 p.add_argument("--eval-test", action="store_true")
 p.add_argument("--beta", type=float, default=1.0)   # >1 favours recall of AI images
+p.add_argument("--no-aug", action="store_true")
 args = p.parse_args()
 
 os.environ["PYTHONHASHSEED"] = str(SEED)
@@ -37,7 +38,7 @@ set_seed(SEED)
 for d in ("models", "reports/figures"):
     Path(d).mkdir(parents=True, exist_ok=True)
 
-train_ds = make_dataset("reports/train.csv", training=True)
+train_ds = make_dataset("reports/train.csv", training=True, augment=not args.no_aug)
 val_ds = make_dataset("reports/val.csv", training=False)
 
 labels = pd.read_csv("reports/train.csv")["label"].values
@@ -87,7 +88,7 @@ if args.mlflow:
                        "epochs": args.epochs, "ft_epochs": args.ft_epochs,
                        "patience": args.patience, "dropout": args.dropout,
                        "batch": 32, "img_size": 160,
-                       "class_weight": not args.no_class_weight})
+                       "class_weight": not args.no_class_weight, "augmentation": not args.no_aug})
 
 
 def plot_curves(hist, best_epoch, title, path):
