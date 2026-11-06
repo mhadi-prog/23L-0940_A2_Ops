@@ -1,0 +1,13 @@
+.git
+.venv
+.env
+data/
+models/
+reports/
+mlruns*/
+mlartifacts/
+*.db
+instance/
+__pycache__/
+*.pyc
+report_assets/Dockerfile.before
