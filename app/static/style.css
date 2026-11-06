@@ -1,0 +1,11 @@
+body{font-family:system-ui,sans-serif;margin:0;background:#f5f6fa;color:#222}
+nav{background:#1f2a44;padding:12px 24px;display:flex;gap:20px}
+nav a{color:#dfe6ff;text-decoration:none}.brand{font-weight:700;color:#fff;margin-right:auto}
+main{max-width:860px;margin:32px auto;padding:0 16px}
+.card{background:#fff;border-radius:10px;padding:20px;box-shadow:0 1px 4px #0002;margin:16px 0}
+.card.ai{border-left:6px solid #d64545}.card.real{border-left:6px solid #2e9e5b}.card.err{border-left:6px solid #e0a100}
+.verdict{font-size:1.8rem;font-weight:700;margin:0}.small{color:#666;font-size:.85rem}
+button{background:#3b5bdb;color:#fff;border:0;padding:8px 18px;border-radius:6px;cursor:pointer;margin-left:8px}
+table{width:100%;border-collapse:collapse;background:#fff}th,td{padding:8px;border-bottom:1px solid #eee;text-align:left;font-size:.9rem}
+td.ai{color:#d64545;font-weight:600}td.real{color:#2e9e5b;font-weight:600}
+.caveat{background:#fff8e1;padding:10px 14px;border-radius:8px}footer{text-align:center;color:#777;font-size:.8rem;padding:24px}

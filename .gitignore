@@ -14,3 +14,5 @@ mlruns_toy/
 toy_*
 mlflow_toy.db
 mlartifacts/
+visionguard.db
+instance/

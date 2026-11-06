@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block body %}
+<h1>Is this image AI-generated?</h1>
+<p>Upload a JPG, PNG or WebP (max {{ max_mb }} MB).</p>
+<form method="post" action="/predict" enctype="multipart/form-data" class="card">
+<input type="file" name="image" accept=".jpg,.jpeg,.png,.webp" required>
+<button type="submit">Analyse</button></form>
+{% endblock %}

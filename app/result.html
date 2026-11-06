@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% block body %}
+<h1>Result</h1>
+<div class="card {{ 'ai' if r.label == 'AI-generated' else 'real' }}">
+<p class="verdict">{{ r.label }}</p>
+<p>Confidence: <b>{{ '%.1f' % (r.confidence * 100) }}%</b> &middot; P(AI) = {{ '%.3f' % r.prob_ai }}</p>
+<p class="small">File: {{ filename }} &middot; model {{ r.model_name }} v{{ r.model_version }}
+&middot; threshold {{ r.threshold }} &middot; {{ r.latency_ms }} ms &middot; {{ r.mode }}</p>
+</div>
+<p class="caveat"><b>Caveat:</b> the model was trained on under 700 images and is wrong roughly one time in four.
+It leans towards flagging images as AI, so real photos can be flagged.</p>
+<a href="/">Check another</a>
+{% endblock %}

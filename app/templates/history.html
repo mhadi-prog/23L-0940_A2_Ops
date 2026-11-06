@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block body %}
+<h1>History</h1>
+<table><tr><th>#</th><th>When (UTC)</th><th>File</th><th>Decision</th><th>Confidence</th><th>Model</th><th>Mode</th></tr>
+{% for p in rows %}<tr><td>{{ p.id }}</td><td>{{ p.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+<td>{{ p.filename }}</td><td class="{{ 'ai' if p.label == 'AI-generated' else 'real' }}">{{ p.label }}</td>
+<td>{{ '%.1f' % (p.confidence * 100) }}%</td><td>{{ p.model_name }} v{{ p.model_version }}</td><td>{{ p.mode }}</td></tr>
+{% else %}<tr><td colspan="7">No predictions yet.</td></tr>{% endfor %}</table>
+{% endblock %}

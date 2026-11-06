@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VisionGuard</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body>
+<nav><a class="brand" href="/">VisionGuard</a>
+<a href="/">Check an image</a><a href="/history">History</a></nav>
+<main>{% block body %}{% endblock %}</main>
+<footer>Results are probabilistic estimates, not proof. Always verify important images another way.</footer>
+</body></html>
