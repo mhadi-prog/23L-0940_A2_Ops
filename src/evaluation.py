@@ -31,7 +31,7 @@ def metrics_at(y, p, thr):
 
 
 def pick_threshold(y, p, beta=1.0):
-    grid = np.linspace(0.05, 0.95, 91)
+    grid = np.linspace(0.20, 0.80, 61)
     scores = [fbeta_score(y, (p >= t).astype(int), beta=beta, zero_division=0) for t in grid]
     return float(grid[int(np.argmax(scores))])
 

@@ -16,3 +16,5 @@ mlflow_toy.db
 mlartifacts/
 visionguard.db
 instance/
+Dockerfile.before
+Dockerfile.before
