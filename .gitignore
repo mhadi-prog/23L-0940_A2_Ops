@@ -10,3 +10,7 @@ mlruns/
 reports/figures/
 data/*.zip
 reports/smoke_*
+mlruns_toy/
+toy_*
+mlflow_toy.db
+mlartifacts/
