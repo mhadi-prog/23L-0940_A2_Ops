@@ -31,6 +31,7 @@ p.add_argument("--mlflow", action="store_true")
 p.add_argument("--eval-test", action="store_true")
 p.add_argument("--beta", type=float, default=1.0)   # >1 favours recall of AI images
 p.add_argument("--no-aug", action="store_true")
+p.add_argument("--autolog", action="store_true")
 args = p.parse_args()
 
 os.environ["PYTHONHASHSEED"] = str(SEED)
@@ -82,8 +83,11 @@ if args.mlflow:
     load_dotenv()                      # reads MLFLOW_* from the git-ignored .env
     mlflow.set_experiment("23L-0940_A2_Ops")
     mlflow.start_run(run_name=args.run_name)
+    if args.autolog:
+        mlflow.tensorflow.autolog(log_models=False, log_datasets=False)
     mlflow.set_tags({"git_commit": sh("git rev-parse HEAD"), "dvc_data_md5": dvc_md5(),
-                     "seed": SEED, "logging": "manual", "model": args.model})
+                     "seed": SEED, "logging": "autolog" if args.autolog else "manual",
+                     "model": args.model})
     mlflow.log_params({"model": args.model, "lr": args.lr, "ft_lr": args.ft_lr,
                        "epochs": args.epochs, "ft_epochs": args.ft_epochs,
                        "patience": args.patience, "dropout": args.dropout,
@@ -110,7 +114,7 @@ def run_stage(model, stage, epochs):
         tf.keras.callbacks.ReduceLROnPlateau(monitor="val_loss", factor=0.5,
                                              patience=max(2, args.patience // 2), min_lr=1e-7),
     ]
-    if args.mlflow:
+    if args.mlflow and not args.autolog:
         cbs.append(logger)
     h = model.fit(train_ds, validation_data=val_ds, epochs=epochs,
                   class_weight=class_weight, callbacks=cbs, verbose=2).history
