@@ -18,3 +18,4 @@ visionguard.db
 instance/
 Dockerfile.before
 Dockerfile.before
+report_assets/
